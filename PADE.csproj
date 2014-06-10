@@ -1,0 +1,531 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C577F2C7-7810-49EA-B949-BD8ABEA55FCB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PADE</RootNamespace>
+    <AssemblyName>PADE</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ManifestCertificateThumbprint>C32C9EDBBDF4B0F2DE65A95BE3D96E06702D969D</ManifestCertificateThumbprint>
+    <ManifestKeyFile>PADE_1_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>false</GenerateManifests>
+    <TargetZone>LocalIntranet</TargetZone>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <SignManifests>false</SignManifests>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>C:\Fermilab\pCT\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>TB4</ProductName>
+    <PublisherName>Fermilab</PublisherName>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>20</ApplicationRevision>
+    <ApplicationVersion>1.300.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>true</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FTD2XX_NET">
+      <HintPath>FTD2XX_NET_v1.0.14\FTD2XX_NET.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>log4net-1.2.11\bin\net\4.0\release\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PcapDotNet.Base, Version=0.10.0.20668, Culture=neutral, PublicKeyToken=4b6f3e583145a652, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>PcapDotNet.Binaries.0.10.0.67076.x86\PcapDotNet.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Core, Version=0.10.0.20632, Culture=neutral, PublicKeyToken=4b6f3e583145a652, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>PcapDotNet.Binaries.0.10.0.67076.x86\PcapDotNet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Core.Extensions, Version=0.10.0.20638, Culture=neutral, PublicKeyToken=4b6f3e583145a652, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>PcapDotNet.Binaries.0.10.0.67076.x86\PcapDotNet.Core.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Packets, Version=0.10.0.20603, Culture=neutral, PublicKeyToken=4b6f3e583145a652, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>PcapDotNet.Binaries.0.10.0.67076.x86\PcapDotNet.Packets.dll</HintPath>
+    </Reference>
+    <Reference Include="PerformanceCounterHelper">
+      <HintPath>PerformanceHelper\PerformanceCounterHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>DockForm Suite\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="ZedGraph, Version=5.1.2.878, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox1.designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Arrays.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Arrays.designer.cs">
+      <DependentUpon>Arrays.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BoardFunctions.cs" />
+    <Compile Include="BoxSee.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="cBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="cBoxForm.Designer.cs">
+      <DependentUpon>cBoxForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataDebug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataDebug.Designer.cs">
+      <DependentUpon>DataDebug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FlashHelper.cs" />
+    <Compile Include="PADE_Left_Toolbar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PADE_Left_Toolbar.Designer.cs">
+      <DependentUpon>PADE_Left_Toolbar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PADE_Selector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PADE_Selector.Designer.cs">
+      <DependentUpon>PADE_Selector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PerformanceLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerformanceLog.Designer.cs">
+      <DependentUpon>PerformanceLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hist_and_Scan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hist_and_Scan.designer.cs">
+      <DependentUpon>Hist_and_Scan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PADE_explorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PADE_explorer.Designer.cs">
+      <DependentUpon>PADE_explorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parser.cs" />
+    <Compile Include="DRAM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DRAM.designer.cs">
+      <DependentUpon>DRAM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EthSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EthSelect.Designer.cs">
+      <DependentUpon>EthSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GBE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GBE.Designer.cs">
+      <DependentUpon>GBE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hist1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hist1.designer.cs">
+      <DependentUpon>Hist1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DisplayControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DisplayControl.designer.cs">
+      <DependentUpon>DisplayControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Flash0.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Flash0.designer.cs">
+      <DependentUpon>Flash0.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BiasOffset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BiasOffset.Designer.cs">
+      <DependentUpon>BiasOffset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messages.Designer.cs">
+      <DependentUpon>Messages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PADE_SN_chooser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PADE_SN_chooser.Designer.cs">
+      <DependentUpon>PADE_SN_chooser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAD_select.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAD_select.Designer.cs">
+      <DependentUpon>PAD_select.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hist0.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hist0.designer.cs">
+      <DependentUpon>Hist0.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plot0.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Plot0.designer.cs">
+      <DependentUpon>Plot0.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Progress0.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Progress0.Designer.cs">
+      <DependentUpon>Progress0.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemoteControl.cs" />
+    <Compile Include="SystemViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemViewer.Designer.cs">
+      <DependentUpon>SystemViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TB4_Exception.cs" />
+    <Compile Include="TB4_Performance.cs" />
+    <Compile Include="TempPlot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TempPlot.Designer.cs">
+      <DependentUpon>TempPlot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="textDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="textDisplay.Designer.cs">
+      <DependentUpon>textDisplay.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AboutBox1.resx">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Arrays.resx">
+      <DependentUpon>Arrays.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cBoxForm.resx">
+      <DependentUpon>cBoxForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataDebug.resx">
+      <DependentUpon>DataDebug.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PADE_Left_Toolbar.resx">
+      <DependentUpon>PADE_Left_Toolbar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PADE_Selector.resx">
+      <DependentUpon>PADE_Selector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PerformanceLog.resx">
+      <DependentUpon>PerformanceLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hist_and_Scan.resx">
+      <DependentUpon>Hist_and_Scan.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DRAM.resx">
+      <DependentUpon>DRAM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EthSelect.resx">
+      <DependentUpon>EthSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GBE.resx">
+      <DependentUpon>GBE.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hist1.resx">
+      <DependentUpon>Hist1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DisplayControl.resx">
+      <DependentUpon>DisplayControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Flash0.resx">
+      <DependentUpon>Flash0.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BiasOffset.resx">
+      <DependentUpon>BiasOffset.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hist0.resx">
+      <DependentUpon>Hist0.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messages.resx">
+      <DependentUpon>Messages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PADE_explorer.resx">
+      <DependentUpon>PADE_explorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PADE_SN_chooser.resx">
+      <DependentUpon>PADE_SN_chooser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAD_select.resx">
+      <DependentUpon>PAD_select.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plot0.resx">
+      <DependentUpon>Plot0.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Progress0.resx">
+      <DependentUpon>Progress0.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registers.resx">
+      <DependentUpon>Registers.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Run0.resx">
+      <DependentUpon>Run0.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectUSB.resx">
+      <DependentUpon>SelectUSB.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SystemViewer.resx">
+      <DependentUpon>SystemViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TempPlot.resx">
+      <DependentUpon>TempPlot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="textDisplay.resx">
+      <DependentUpon>textDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="log4net.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Registers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registers.Designer.cs">
+      <DependentUpon>Registers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Run0.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Run0.Designer.cs">
+      <DependentUpon>Run0.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectUSB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectUSB.Designer.cs">
+      <DependentUpon>SelectUSB.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="application.ico" />
+    <Content Include="UI_Resources\DockPanel.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Office">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Documentation\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

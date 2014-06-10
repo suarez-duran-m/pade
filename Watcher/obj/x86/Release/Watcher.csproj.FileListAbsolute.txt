@@ -1,0 +1,5 @@
+C:\Documents and Settings\rubinov\My Documents\Visual Studio 2010\Projects\SiPM_1\ScopeOnly\Watcher\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\rubinov\My Documents\Visual Studio 2010\Projects\SiPM_1\ScopeOnly\Watcher\bin\Release\Watcher.exe
+C:\Documents and Settings\rubinov\My Documents\Visual Studio 2010\Projects\SiPM_1\ScopeOnly\Watcher\bin\Release\Watcher.pdb
+C:\Documents and Settings\rubinov\My Documents\Visual Studio 2010\Projects\SiPM_1\ScopeOnly\Watcher\obj\x86\Release\Watcher.exe
+C:\Documents and Settings\rubinov\My Documents\Visual Studio 2010\Projects\SiPM_1\ScopeOnly\Watcher\obj\x86\Release\Watcher.pdb

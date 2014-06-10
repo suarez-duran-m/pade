@@ -1,0 +1,12 @@
+C:\Documents and Settings\rubinov\My Documents\Visual Studio 2010\Projects\SiPM_1\ScopeOnly\Watcher\bin\Debug\Watcher.exe
+C:\Documents and Settings\rubinov\My Documents\Visual Studio 2010\Projects\SiPM_1\ScopeOnly\Watcher\bin\Debug\Watcher.pdb
+C:\Documents and Settings\rubinov\My Documents\Visual Studio 2010\Projects\SiPM_1\ScopeOnly\Watcher\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\rubinov\My Documents\Visual Studio 2010\Projects\SiPM_1\ScopeOnly\Watcher\obj\x86\Debug\Watcher.exe
+C:\Documents and Settings\rubinov\My Documents\Visual Studio 2010\Projects\SiPM_1\ScopeOnly\Watcher\obj\x86\Debug\Watcher.pdb
+\\ppd115924.dhcp.fnal.gov\c$\Projects\SiPM\ScopeOnly\Watcher\obj\x86\Debug\Watcher.exe
+\\ppd115924.dhcp.fnal.gov\c$\Projects\SiPM\ScopeOnly\Watcher\obj\x86\Debug\Watcher.pdb
+C:\projects\pCT\PADE\software\PADE_V115_NIU\Watcher\obj\x86\Debug\Watcher.exe
+C:\projects\pCT\PADE\software\PADE_V115_NIU\Watcher\obj\x86\Debug\Watcher.pdb
+C:\projects\pCT\PADE\software\PADE_V115_NIU\Watcher\bin\Debug\Watcher.exe
+C:\projects\pCT\PADE\software\PADE_V115_NIU\Watcher\bin\Debug\Watcher.pdb
+C:\projects\pCT\PADE\software\PADE_V115_NIU\Watcher\obj\x86\Debug\ResolveAssemblyReference.cache

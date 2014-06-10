@@ -1,0 +1,639 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PerformanceCounterHelper</name>
+    </assembly>
+    <members>
+        <member name="T:PerformanceCounterHelper.PerformanceCounterCategoryAttribute">
+            <summary>
+            Attribute to be set to the category containing a set of performance counters
+            It contains information about the category that would be used to configure how to managed this category.
+            </summary>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceCounterCategoryAttribute.#ctor(System.String,System.Diagnostics.PerformanceCounterCategoryType,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="name">category name to be shown</param>
+            <param name="instanceType">category Type (single or multiIntance)</param>
+            <param name="info">Information to be shown for this category</param>
+            <seealso cref="T:System.Diagnostics.PerformanceCounterCategoryType"/>
+        </member>
+        <member name="P:PerformanceCounterHelper.PerformanceCounterCategoryAttribute.Name">
+            <summary>
+            Get or Set the name of the counter
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.PerformanceCounterCategoryAttribute.Info">
+            <summary>
+            Get or Set information about this category
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.PerformanceCounterCategoryAttribute.InstanceType">
+            <summary>
+            Get category instance type
+            </summary>
+        </member>
+        <member name="T:PerformanceCounterHelper.CounterHelper`1">
+            <summary>
+            Interface for implementations that will hold all information and actions available regarding a performance counter.
+            </summary>
+            <typeparam name="T">enum type holding performance counter details</typeparam>
+        </member>
+        <member name="M:PerformanceCounterHelper.CounterHelper`1.Decrement(`0)">
+            <summary>
+            Decrement value of the counter
+            </summary>
+            <param name="counterName">name of the counter to be decremented</param>
+            <returns>returns FAILURE  in case there was an error otherwise the final value of the counter</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.CounterHelper`1.DecrementBy(`0,System.Int64)">
+            <summary>
+            Decrement value of the counter by "value"
+            </summary>
+            <param name="value">value to decrement</param>
+            <param name="counterName">name of the counter to be decremented</param>
+            <returns>returns FAILURE  in case there was an error otherwise the final value of the counter</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.CounterHelper`1.Increment(`0)">
+            <summary>
+            Increment value of the counter
+            </summary>
+            <param name="counterName">name of the counter to be decremented</param>
+            <returns>returns FAILURE  in case there was an error otherwise the final value of the counter </returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.CounterHelper`1.IncrementBy(`0,System.Int64)">
+            <summary>
+            Increment value of the counter by "value"
+            </summary>
+            <param name="value">value to increment</param>
+            <param name="counterName">name of the counter to be decremented</param>
+            <returns>retorna -1 si hubo un error, o devuelve el valor final</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.CounterHelper`1.NextSample(`0)">
+            <summary>
+            Get a sample of the counter 
+            </summary>
+            <param name="counterName">name of the counter</param>
+            <returns>returns CounterSample.Empty in case there was an error, otherwise it returns the not calculated sample</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.CounterHelper`1.NextValue(`0)">
+            <summary>
+            Get the value of a counter
+            </summary>
+            <param name="counterName">name of the counter</param>
+            <returns>returns FAILURE si hubo un error,in case there was an error, otherwise it returns the not calculated value</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.CounterHelper`1.RawValue(`0,System.Int64)">
+            <summary>
+            Get the value of a counter
+            </summary>
+            <param name="counterName">name of the counter</param>
+            <param name="value">value to put on performance counter</param>
+            <returns>returns FAILURE si hubo un error,in case there was an error, otherwise it returns the not calculated value</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.CounterHelper`1.GetInstance(`0)">
+            <summary>
+            Get the PerformanceCounter Instance associated with the countername.
+            </summary>
+            <param name="counterName">name of the counter</param>
+            <returns>returns an instance of PerformanceCounter in case there is such object associated with the countername given. Otherwise, null</returns>
+        </member>
+        <member name="M:PerformanceCounterHelper.CounterHelper`1.Reset(`0)">
+            <summary>
+            Reset to default value the instance counter
+            </summary>
+            <param name="counterName">the counter name</param>
+        </member>
+        <member name="M:PerformanceCounterHelper.CounterHelper`1.DecrementBase(`0)">
+            <summary>
+            Decrement value of the base counter
+            </summary>
+            <param name="counterName">name of the counter to has his base counter decremented</param>
+            <returns>returns FAILURE  in case there was an error otherwise the final value of the counter</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.CounterHelper`1.IncrementBase(`0)">
+            <summary>
+            Increment value of the base counter
+            </summary>
+            <param name="counterName">name of the counter to has its base counter decremented</param>
+            <returns>returns FAILURE  in case there was an error otherwise the final value of the counter </returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.CounterHelper`1.IncrementBaseBy(`0,System.Int64)">
+            <summary>
+            Increment value of the base counter by "value"
+            </summary>
+            <param name="value">value to increment</param>
+            <param name="counterName">name of the counter to has its base counter decremented</param>
+            <returns>returns -1 in case there was an error, otherwise it returns the final value</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.CounterHelper`1.NextBaseSample(`0)">
+            <summary>
+            Get a sample of the base counter 
+            </summary>
+            <param name="counterName">name of the counter</param>
+            <returns>returns CounterSample.Empty in case there was an error, otherwise it returns the not calculated sample</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.CounterHelper`1.NextBaseValue(`0)">
+            <summary>
+            Get the value of a base counter
+            </summary>
+            <param name="counterName">name of the counter</param>
+            <returns>returns FAILURE si hubo un error,in case there was an error, otherwise it returns the not calculated value</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.CounterHelper`1.BaseRawValue(`0,System.Int64)">
+            <summary>
+            Get the value of a base counter
+            </summary>
+            <param name="counterName">name of the counter</param>
+            <returns>returns FAILURE si hubo un error,in case there was an error, otherwise it returns the not calculated value</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+            <param name="value">value to be set</param>
+        </member>
+        <member name="M:PerformanceCounterHelper.CounterHelper`1.GetBaseInstance(`0)">
+            <summary>
+            Get the PerformanceCounter Base Instance associated with the countername.
+            
+            </summary>
+            <param name="counterName">name of the counter</param>
+            <returns>returns an instance of PerformanceCounter in case there is such object associated with the countername given as a base counter. Otherwise, null</returns>
+        </member>
+        <member name="T:PerformanceCounterHelper.Factory.CounterHelperFactory">
+            <summary>
+            Factory class to create an implementation of CounterHelper interface
+            </summary>
+        </member>
+        <member name="M:PerformanceCounterHelper.Factory.CounterHelperFactory.Create``1(System.String,PerformanceCounterHelper.PerformanceCounterCategoryAttribute,System.Collections.Generic.Dictionary{``0,PerformanceCounterHelper.PerformanceCounterAttribute})">
+            <summary>
+            Create a CounterHelper instance to work for instantiated performance counter
+            </summary>
+            <typeparam name="T">the enum type holding counter information</typeparam>
+            <param name="instanceName">name for this instance</param>
+            <param name="categoryInfo">information about the category for this counter</param>
+            <param name="enumCounterAttributes">attributes for the enum category</param>
+            <returns>a created instance of CounterHelper interface to work with the counter</returns>
+        </member>
+        <member name="M:PerformanceCounterHelper.Factory.CounterHelperFactory.Create``1(PerformanceCounterHelper.PerformanceCounterCategoryAttribute,System.Collections.Generic.Dictionary{``0,PerformanceCounterHelper.PerformanceCounterAttribute})">
+            <summary>
+            Create a CounterHelper instance to work for non-instantiated performance counter
+            </summary>
+            <typeparam name="T">the enum type holding counter information</typeparam>
+            <param name="categoryInfo">information about the category for this counter</param>
+            <param name="enumCounterAttributes">attributes for the enum category</param>
+            <returns>a created instance of CounterHelper interface to work with the counter</returns>
+        </member>
+        <member name="T:PerformanceCounterHelper.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.Properties.Resources.CounterHelper_MultiInstanceNoInstanceNameErrorMessage">
+            <summary>
+              Looks up a localized string similar to MultiInstance performance counters categories need to have instanceName associated..
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.Properties.Resources.PerformanceHelper_BaseCounterDescription">
+            <summary>
+              Looks up a localized string similar to internal base counter for {0}.
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.Properties.Resources.PerformanceHelper_BaseTypeNameAddon">
+            <summary>
+              Looks up a localized string similar to Base.
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.Properties.Resources.PerformanceHelper_BaseTypeSupportedInternalErrorMessage">
+            <summary>
+              Looks up a localized string similar to This version supports internally the creation of base types, remove {0} from your code..
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.Properties.Resources.PerformanceHelper_EnumTypeCannotBeNullErrorMessage">
+            <summary>
+              Looks up a localized string similar to enumType cannot be null..
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.Properties.Resources.PerformanceHelper_EnumTypeErrorMessage">
+            <summary>
+              Looks up a localized string similar to {0} needs to be enum type..
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.Properties.Resources.PerformanceHelper_EnumTypeNoPerformanceCounterCategoryAttributeErrorMessage">
+            <summary>
+              Looks up a localized string similar to Enum &apos;{0}&apos; needs to have a PerformanceCounterCategoryAttribute with category information..
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.Properties.Resources.PerformanceHelper_EnumValueCannotBeNullErrorMessage">
+            <summary>
+              Looks up a localized string similar to enumValue cannot be null..
+            </summary>
+        </member>
+        <member name="T:PerformanceCounterHelper.Impl.CounterHelperImpl`1">
+            <summary>
+            Class to wrap managing logic for performance counters
+            </summary>
+            <typeparam name="T">Enum Type that defines the performance counter</typeparam>
+        </member>
+        <member name="F:PerformanceCounterHelper.Impl.CounterHelperImpl`1.FAILURE">
+            <summary>
+            Failure constant value
+            </summary>
+        </member>
+        <member name="F:PerformanceCounterHelper.Impl.CounterHelperImpl`1._counters">
+            <summary>
+            Counters dictionary
+            </summary>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.#ctor(System.String,PerformanceCounterHelper.PerformanceCounterCategoryAttribute,System.Collections.Generic.Dictionary{`0,PerformanceCounterHelper.PerformanceCounterAttribute})">
+            <summary>
+            Internal Constructor for named instances (multi-instance counters)
+            </summary>
+            <param name="instanceName">name for this instance</param>
+            <param name="categoryInfo">information about this category</param>
+            <param name="enumCounterAttributes">enumerator attributes</param>
+            <exception cref="T:System.NotSupportedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.#ctor(PerformanceCounterHelper.PerformanceCounterCategoryAttribute,System.Collections.Generic.Dictionary{`0,PerformanceCounterHelper.PerformanceCounterAttribute})">
+            <summary>
+            Internal Constructor for not named instances 
+            </summary>
+            <param name="categoryInfo">information about this category</param>
+            <param name="enumCounterAttributes">enumerator attributes</param>
+            <exception cref="T:System.NotSupportedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.Dispose">
+            <summary>
+            Excplicit Call to dispose the object
+            </summary>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.Finalize">
+            <summary>
+            Destructor
+            </summary>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.Decrement(`0)">
+            <summary>
+            Decrement value of the counter
+            </summary>
+            <param name="counterName">name of the counter to be decremented</param>
+            <returns>returns FAILURE  in case there was an error otherwise the final value of the counter</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.DecrementBy(`0,System.Int64)">
+            <summary>
+            Decrement value of the counter by "value"
+            </summary>
+            <param name="value">value to decrement</param>
+            <param name="counterName">name of the counter to be decremented</param>
+            <returns>returns FAILURE  in case there was an error otherwise the final value of the counter</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.Increment(`0)">
+            <summary>
+            Increment value of the counter
+            </summary>
+            <param name="counterName">name of the counter to be decremented</param>
+            <returns>returns FAILURE  in case there was an error otherwise the final value of the counter </returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.IncrementBy(`0,System.Int64)">
+            <summary>
+            Increment value of the counter by "value"
+            </summary>
+            <param name="value">value to increment</param>
+            <param name="counterName">name of the counter to be decremented</param>
+            <returns>retorna -1 si hubo un error, o devuelve el valor final</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.NextSample(`0)">
+            <summary>
+            Get a sample of the counter 
+            </summary>
+            <param name="counterName">name of the counter</param>
+            <returns>returns CounterSample.Empty in case there was an error, otherwise it returns the not calculated sample</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.NextValue(`0)">
+            <summary>
+            Get the value of a counter
+            </summary>
+            <param name="counterName">name of the counter</param>
+            <returns>returns FAILURE si hubo un error,in case there was an error, otherwise it returns the not calculated value</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.RawValue(`0,System.Int64)">
+            <summary>
+            Get the value of a counter
+            </summary>
+            <param name="counterName">name of the counter</param>
+            <returns>returns FAILURE si hubo un error,in case there was an error, otherwise it returns the not calculated value</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+            <param name="value">value to be put on performance counter</param>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.GetInstance(`0)">
+            <summary>
+            Get the PerformanceCounter Instance associated with the countername.
+            </summary>
+            <param name="counterName">name of the counter</param>
+            <returns>returns an instance of PerformanceCounter in case there is such object associated with the countername given. Otherwise, null</returns>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.Reset(`0)">
+            <summary>
+            Reset to default value the instance counter
+            </summary>
+            <param name="counterName">the counter name</param>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.DecrementBase(`0)">
+            <summary>
+            Decrement value of the base counter
+            </summary>
+            <param name="counterName">name of the counter to has his base counter decremented</param>
+            <returns>returns FAILURE  in case there was an error otherwise the final value of the counter</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.IncrementBase(`0)">
+            <summary>
+            Increment value of the base counter
+            </summary>
+            <param name="counterName">name of the counter to has its base counter decremented</param>
+            <returns>returns FAILURE  in case there was an error otherwise the final value of the counter </returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.IncrementBaseBy(`0,System.Int64)">
+            <summary>
+            Increment value of the base counter by "value"
+            </summary>
+            <param name="value">value to increment</param>
+            <param name="counterName">name of the counter to has its base counter decremented</param>
+            <returns>returns -1 in case there was an error, otherwise it returns the final value</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.NextBaseSample(`0)">
+            <summary>
+            Get a sample of the base counter 
+            </summary>
+            <param name="counterName">name of the counter</param>
+            <returns>returns CounterSample.Empty in case there was an error, otherwise it returns the not calculated sample</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.NextBaseValue(`0)">
+            <summary>
+            Get the value of a base counter
+            </summary>
+            <param name="counterName">name of the counter</param>
+            <returns>returns FAILURE si hubo un error,in case there was an error, otherwise it returns the not calculated value</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.BaseRawValue(`0,System.Int64)">
+            <summary>
+            Get the value of a base counter
+            </summary>
+            <param name="counterName">name of the counter</param>
+            <param name="value">value to be put on performance counter</param>
+            <returns>returns FAILURE si hubo un error,in case there was an error, otherwise it returns the not calculated value</returns>
+            <exception cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.GetBaseInstance(`0)">
+            <summary>
+            Get the PerformanceCounter Base Instance associated with the countername.
+            
+            </summary>
+            <param name="counterName">name of the counter</param>
+            <returns>returns an instance of PerformanceCounter in case there is such object associated with the countername given as a base counter. Otherwise, null</returns>
+        </member>
+        <member name="M:PerformanceCounterHelper.Impl.CounterHelperImpl`1.GetContainer(`0)">
+            <summary>
+            get the PerformanceCounterContainer associated with the given counterName.
+            </summary>
+            <param name="counterName">name of the counter</param>
+            <returns>PerformanceCounterContainer instance in case there is such. Otherwise null.</returns>
+        </member>
+        <member name="P:PerformanceCounterHelper.Impl.CounterHelperImpl`1.InstanceName">
+            <summary>
+            Get the instance name associated with this counterHelper
+            </summary>
+        </member>
+        <member name="T:PerformanceCounterHelper.PerformanceHelper">
+            <summary>
+            Helper to create and managed performance counters to monitor applications.
+            It recieves an enum type that needs to have PerformanceCounterCategoryAttribute attribute and PerformanceCounterAttribute on each item contained with information about the category and types of counters.
+            </summary>
+            <seealso cref="T:PerformanceCounterHelper.PerformanceCounterCategoryAttribute"/>
+            <seealso cref="T:PerformanceCounterHelper.PerformanceCounterAttribute"/>
+            <exception cref="T:System.NotSupportedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceHelper.GetPerformanceCounterFromAssembly(System.Reflection.Assembly)">
+            <summary>
+            Get all enums declared on that assembly that defines PerformanceCounterCategoryAttribute and PerformanceCounterAttribute
+            </summary>
+            <param name="assembly">Assembly that holds performance Counters definition</param>
+            <returns>returns an Array of Enumerators that holds Performance Counters information</returns>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceHelper.Uninstall(System.Type)">
+            <summary>
+            Uninstall a category of performance counters defined in this Enumerator
+            </summary>
+            <param name="typeT">enumerator that holds counters and defines PerformanceCounterCategoryAttribute and PerformanceCounterAttribute</param>
+            <seealso cref="T:PerformanceCounterHelper.PerformanceCounterCategoryAttribute"/>
+            <seealso cref="T:PerformanceCounterHelper.PerformanceCounterAttribute"/>
+            <exception cref="T:System.NotSupportedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceHelper.Install(System.Type)">
+            <summary>
+            Install a category of performance counters using the information on the enumerator 
+            </summary>
+            <param name="typeT">enumerator that contains information on the performance counters</param>
+            <seealso cref="T:PerformanceCounterHelper.PerformanceCounterCategoryAttribute"/>
+            <seealso cref="T:PerformanceCounterHelper.PerformanceCounterAttribute"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceHelper.CreateCounterHelper``1">
+            <summary>
+            Create an instance of CounterHelper to manage performance counters defined on T
+            </summary>
+            <typeparam name="T">enumerator that holds performance counter information</typeparam>
+            <seealso cref="T:PerformanceCounterHelper.PerformanceCounterCategoryAttribute"/>
+            <seealso cref="T:PerformanceCounterHelper.PerformanceCounterAttribute"/>
+            <returns>returns an instance of CounterHelper</returns>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceHelper.CreateCounterHelper``1(System.String)">
+            <summary>
+            Create an instance of CounterHelper to manage performance counters defined on T defininig an instance name for multi-instance counters.
+            </summary>
+            <typeparam name="T">enumerator that holds performance counter information</typeparam>
+            <param name="instanceName">instance name to be used on multi-instance counters</param>
+            <seealso cref="T:PerformanceCounterHelper.PerformanceCounterCategoryAttribute"/>
+            <seealso cref="T:PerformanceCounterHelper.PerformanceCounterAttribute"/>
+            <returns>returns an instance of CounterHelper</returns>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceHelper.GetCategoryAttribute(System.Type)">
+            <summary>
+            Get PerformanceCounterCategoryAttribute attached to an Enumeration
+            </summary>
+            <param name="enumType">enumerator</param>
+            <returns>returns an instance of PerformanceCounterCategoryAttribute in case the attribute is found, otherwise null</returns>
+            <seealso cref="T:PerformanceCounterHelper.PerformanceCounterCategoryAttribute"/>
+            <exception cref="T:System.NotSupportedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceHelper.GetCounterAttribute(System.Type,System.Object)">
+            <summary>
+            Get PerformanceCounterAttribute attached to an item within an Enumeration
+            </summary>
+            <param name="enumType">enumerator</param>
+            <param name="enumValue">value withing the enum</param>
+            <returns>returns an instance of PerformanceCounterAttribute in case the attribute is found, otherwise null</returns>
+            <seealso cref="T:PerformanceCounterHelper.PerformanceCounterAttribute"/>
+            <exception cref="T:System.NotSupportedException"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceHelper.GetBaseType(System.Diagnostics.PerformanceCounterType)">
+            <summary>
+            Get the PerformanceCounterType of the base type associated to this counter
+            </summary>
+            <param name="type">PerformanceCounterType of the counter to be added</param>
+            <returns>returns PerformanceCounterType for the base counter in case the PerformanceCounterType passed as parameter requires a base counter, otherwise null</returns>
+            <seealso cref="T:System.Diagnostics.PerformanceCounterType"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceHelper.GetCounterNameForBaseType(System.String)">
+            <summary>
+            Returns the counter name for the counter base given the counter name that needs a base
+            </summary>
+            <param name="counterName">counter name of the counter that needs a base</param>
+            <returns>counter name to be used on the base counter</returns>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceHelper.IsBaseType(System.Diagnostics.PerformanceCounterType)">
+            <summary>
+            Returns if a PerformanceCounterType is a base type for another counter type
+            (AverageBase, CounterMultiBase, RawBase y SampleBase are Base Types)
+            </summary>
+            <param name="counterType">PerformanceCounterType</param>
+            <returns>returns true if the type is a based counter type, otherwise false</returns>
+        </member>
+        <member name="T:PerformanceCounterHelper.PerformanceCounterAttribute">
+            <summary>
+            Attribute used for Performance counter. 
+            It contains information about the counter that would be used to configure how to manage this variable.
+            </summary>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceCounterAttribute.#ctor(System.String,System.String,System.Diagnostics.PerformanceCounterType)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="name">Name of the counter</param>
+            <param name="info">Information about the counter</param>
+            <param name="counterType">Type of counter</param>
+            <seealso cref="T:System.Diagnostics.PerformanceCounterType"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceCounterAttribute.#ctor(System.String,System.String,System.Diagnostics.PerformanceCounterType,System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="name">Name of the counter</param>
+            <param name="info">Information about the counter</param>
+            <param name="counterType">Type of counter</param>
+            <param name="baseAutoIncreased">if true, each time the performance counter increased/decreased its base will be increased/decrease on 1 point. Otherwise all that base management will need to be handed on client code</param>
+            <seealso cref="T:System.Diagnostics.PerformanceCounterType"/>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceCounterAttribute.op_Implicit(PerformanceCounterHelper.PerformanceCounterAttribute)~System.Diagnostics.PerformanceCounterType">
+            <summary>
+            Specify the formula to be used to calculate the value when the method 'NextValue' is called
+            </summary>
+            <param name="performanceCounter">Counter</param>
+            <returns>returns the CounterType</returns>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceCounterAttribute.ToString">
+            <summary>
+            Override method to returns counter name
+            </summary>
+            <returns>returns the counter name</returns>
+        </member>
+        <member name="P:PerformanceCounterHelper.PerformanceCounterAttribute.Name">
+            <summary>
+            Get or Set the counter name
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.PerformanceCounterAttribute.Info">
+            <summary>
+            Get or Set information about the counter
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.PerformanceCounterAttribute.CounterType">
+            <summary>
+            Get or Set counterType 
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.PerformanceCounterAttribute.IsBaseAutoIncreased">
+            <summary>
+            Indicates that, if this performance counter needs a base, it should be increased/decreased by 1 when the relevant one is increased/decreased.
+            </summary>
+        </member>
+        <member name="T:PerformanceCounterHelper.PerformanceCounterContainer">
+            <summary>
+            Container of a relevant Performance Counter. It includes context information about that counter such as base performance counter and if it needs to increase/decrease automatically the base when the relevant one is increased / decreased.
+            </summary>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceCounterContainer.#ctor(System.Diagnostics.PerformanceCounter)">
+            <summary>
+            Creates a container with only the relevant performance counter. This constructor sets the base instance in null and the autoincrease value to false
+            If the performance counter you are passing as argument needs a base, you should consider using the other constructor.
+            </summary>
+            <param name="performanceCounterInstance">instance of performance counter</param>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceCounterContainer.#ctor(System.Diagnostics.PerformanceCounter,System.Diagnostics.PerformanceCounter,System.Boolean)">
+            <summary>
+            Creates a container with the relevant performance counter and the base one associated, setting also if the base counter should be increased / decreased when the relevant one is modified.
+            If the autoincreased value is set to true, then when increasing or decreasing the relevant counter, the base is increased / decreased by 1. In case the autoincrease is set to false, the  user
+            will need to manually update the base accordingly.
+            </summary>
+            <param name="performanceCounterInstance">instance of performance counter</param>
+            <param name="performanceCounterBaseInstance">instance of performance counter being the base of the performanceCounterInstance</param>
+            <param name="autoIncrease">true, to autoincrease the base, false if you prefer doing it manually.</param>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceCounterContainer.Dispose">
+            <summary>
+            Excplicit Call to dispose the object
+            </summary>
+        </member>
+        <member name="M:PerformanceCounterHelper.PerformanceCounterContainer.Finalize">
+            <summary>
+            Destructor
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.PerformanceCounterContainer.PerformanceCounterInstance">
+            <summary>
+            Get the instance of the relevant performanceCounter.
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.PerformanceCounterContainer.PerformanceCounterBaseInstance">
+            <summary>
+            Get the instance of the base performanceCounter associated with the relevant counter in case there is need of one.
+            <remarks>This value can be null.</remarks>
+            </summary>
+        </member>
+        <member name="P:PerformanceCounterHelper.PerformanceCounterContainer.IsBaseAutoIncreased">
+            <summary>
+            Get if the  Base should be autoincreased. This value is used internally and checked only when the relevant counter is modified.
+            </summary>
+        </member>
+    </members>
+</doc>

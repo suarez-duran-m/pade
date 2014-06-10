@@ -1,0 +1,152 @@
+Address,Function,valid,Pwr On,read/,READ,WRITE,DISPLAY,Function 
+32 bit HEX,Name,data,Default,write,ONLY,ONLY,TAB,Description
+0x00100000,Control register,D[15..0],N/A,R/W,FALSE,FALSE,MAIN,General FPGA control/status register. See breakout of status bits below
+0x00200000,HDMI Status,D[15..0],N/A,R,TRUE,FALSE,MAIN,Status bits that pertain to the HDMI interface between BADs
+0x00300000,Set FLASH to binary page size,N/A,N/A,W,FALSE,TRUE,EXPERT,Permanently converts Atmel SPI Flash from 528 bytes per page to 512 bytes per page. Must power down FLASH for this to take effect
+0x00400000,Deserializer IO RESET,N/A,N/A,W,FALSE,TRUE,EXPERT,"Resets the deserializer IO circuit. Write only, should only need this at power up if at all. Have not found the need for this feature."
+0x00500000-0x00500004,"BITSLIP CH0-3, AUTO BITSLIP",N/A,N/A,R/W,FALSE,FALSE,EXPERT,Bumps the serdes receiver once for each write; read back frame aligned status
+0x00600000-0x00600003,VGA_DAC_CH0-3,D[11..0],N/A,W,FALSE,TRUE,EXPERT,Directly writes the 12 bit DAC value to the chosen VGA GAIN DAC
+0x00700000-0x00700003,ADC_REG_I2C_CNTRL_0-3,D[15..0],N/A,R/W,FALSE,FALSE,EXPERT,"Upper 8 bits are serial interface address, lower 8 bits are data (see below)"
+0x00800000-0x0080001F,BIAS_OFFSET_DAC_CH0-31,D[9..0],0x000,R/W,FALSE,FALSE,BIAS,"Directly writes the 10 bit DAC value to the chosen BIAS OFFSET DAC. Read is only the current register value, not necessarily the DAC setting."
+0x00900000-0x0090FFFF,MAC_INTERFACE,D[15..0],0x0000,R/W,TRUE,FALSE,EXPERT,64K register mapping of the ASIX AX88180
+0x00A00000,BIAS_DAC,D[7..0],0x00,W,FALSE,TRUE,EXPERT,"Set the BIAS DAC; $FF is the lowest setting, while $01 is the highest. $00 is off. Range is set with ext resistors (curr 20V-60V)"
+0x00B00000,BIAS_VMON,D[15..0],0x00,R,TRUE,FALSE,EXPERT,Read current value of bias voltage. 16 bit ADC.
+0x00C00000,BIAS_IMON,D[15..0],0x00,R,TRUE,FALSE,EXPERT,Read current value of current bias. 16 bit ADC.
+0x00D00000,BIAS_NUM_AVG,D[4..0],0x0,R/W,FALSE,FALSE,MAIN,Number of averaged bias monitor readings for both ADCs. Actual number of averages is 2^n of this value (0 to 7). Bit 4 enables bias monitoring.
+0x01000000,STATUS REGISTER 1,D[15..0],0x00,R,TRUE,FALSE,EXPERT,Various status bits. See Below.
+0x01100200,DEBUG MEMORY INDEX,D[8..0],,,,,,reset by writing to this location
+0x01100000 - 0x011001FF,DEBUG MEMORY,D[15..0],,,,,,
+0x01200000,HDMI COMM EN,D[0],0x00,R/W,TRUE,FALSE,EXPERT,set this to one on the master to enable the HDMI communication chain (clock locking not effected by this enable)
+0x02100000,ADC_STANDBY,D[0],N/A,R/W,FALSE,FALSE,EXPERT,Directly put all four ADCs into standby mode
+0x02200000,ADC_POWERDN,D[0],N/A,R/W,FALSE,FALSE,EXPERT,Directly put all four ADCs into power down mode
+0x02300000,REG_EN,D[0],N/A,R/W,FALSE,FALSE,EXPERT,Directly put all four ADCs into power down mode
+0x02400000,REG_XSHTDN,D[0],N/A,R/W,FALSE,FALSE,EXPERT,Directly put all four ADCs into power down mode
+0x03100000 - 0x03100002,SOURCE (PADE) MAC ADDR,D[15..0],0x0000,R/W,FALSE,FALSE,ETH,PADE MAC ADDR (6 bytes total)
+0x03200000 - 0x03200002,Destination MAC ADDR,D[15..0],0x0000,R/W,FALSE,FALSE,ETH,Destination MAC ADDR (6 bytes total) - This value is used in RUN mode. Otherwise the MAC dest addr is picked up from the incoming UDP packet.
+0x03300000 - 0x03300001,SOURCE IP ADDR,D[15..0],0x0000,R/W,FALSE,FALSE,ETH,SOURCE IP ADDR (4 bytes total)
+0x03400000 - 0x03400001,DESTINATION IP ADDR,D[15..0],0x0000,R/W,FALSE,FALSE,ETH,DESTINATION IP ADDR (4 bytes total) - This value is used in RUN mode. Otherwise the IP dest addr is picked up from the incoming UDP packet.
+0x04400000,TRIG_THRESHOLD_CH0,D[11..0],0x000,R/W,FALSE,FALSE,MAIN,"Lower 12 bits is the threshold in ADC counts; used for zero suppress, self trigger and histogram applications"
+0x04500000,TRIG_THRESHOLD_CH1,D[11..0],0x000,R/W,FALSE,FALSE,MAIN,"Lower 12 bits is the threshold in ADC counts; used for zero suppress, self trigger and histogram applications"
+0x04600000,TRIG_THRESHOLD_CH2,D[11..0],0x000,R/W,FALSE,FALSE,MAIN,"Lower 12 bits is the threshold in ADC counts; used for zero suppress, self trigger and histogram applications"
+0x04700000,TRIG_THRESHOLD_CH3,D[11..0],0x000,R/W,FALSE,FALSE,MAIN,"Lower 12 bits is the threshold in ADC counts; used for zero suppress, self trigger and histogram applications"
+0x04800000,word_count for the test memory (new for v304- used to be EXT_TRIG_POST_STORE),D[8..0],0x000,R/W,FALSE,FALSE,MAIN,Number of ADC samples to store after self trig or ext trig for all 4 channels
+0x04900000,TRIG_DELAY,D[7..0],0x00,R/W,FALSE,FALSE,MAIN,Delay from any trigger to locally provided trigger. Used to synchronize timestamps among multiple boards using HDMI.
+0x05000000 - 0x0500000F,TRIG_MASK,D[0],0x00,R/W,FALSE,FALSE,MAIN,
+0x06000000,readout mode (new for v304! - used to be READ_POINTER_OFFSET),D[8..0],0x0000,R/W,FALSE,FALSE,MAIN,"1=hit count every ms, 2= scope mode"
+0x06400000,AUTO PED SET,D[7..0],0x0000,R/W,FALSE,FALSE,MAIN,Set the desired pedestal value from 0 to 255. A non-zero value enables auto ped mode.
+0x07000000,THRESHOLD SCAN TIME,D[15..0],0x0000,R/W,FALSE,FALSE,MAIN,This register sets the threshold scan time in increments of 819uS for each bit.
+0x07100000,THRESHOLD SCAN START COUNT,D[11..0],0x0000,R/W,FALSE,FALSE,MAIN,This register sets the starting ADC count value for the threshold scan (12 bits)
+0x07200000,THRESHOLD SCAN TOTAL COUNTS,D[15..0],0x0000,R/W,FALSE,FALSE,MAIN,"This register sets the number of total points to take in the scan (count value from scan start count (11 bits, 2047 points max)"
+0x07300000,START THRESHOLD SCAN,N/A,N/A,W,FALSE,TRUE,MAIN,Start the auto scanning
+0x07400000 - 0x07400020,Results of the threshold scan (counts for THIS threshold),,,,,,,
+0x08000000,FLASH_CONTROL,D[7..0],0x00,R/W,FALSE,FALSE,FLASH,Flash command CSR. See breakout of bits below
+0x08100000,FLASH_OP_CODE,D[7..0],0x00,R/W,FALSE,FALSE,FLASH,This value is used by the AT45DB flash interface module as the operation code.
+0x08200000,FLASH_PAGE_ADDR,D[11..0],0x000,R/W,FALSE,FALSE,FLASH,Write the 12 bit page address (4096 pages) for flash page read or write. 
+0x08300000,FLASH_BYTE_ADDR,D[9..0],0x000,R/W,FALSE,FALSE,FLASH,Write the 10 bit byte address (528 bytes per page) for flash page read or write. 
+0x08400000,FLASH REPROGRAM CHECKSUM,D[7..0],0x00,R,TRUE,FALSE,FLASH,Simple summing checksum of reprogramming data sent to flash. Should be checked by software and verified before reprogramming! ($FE hard reset)
+0x0A000000,ZERO_SUPPRESSED_EVENTS,D[11..0],0x0,R,TRUE,FALSE,MAIN,Number of zero suppressed events that were written in a given frame
+0x0A100000,ZERO_SUPPRESS_PRESAMPLE,D[3..0],0x0,R/W,FALSE,FALSE,MAIN,Number of samples (up to 16) to include for each hit preceding the sample that crossed the threshold
+0x0A200000,ZERO_SUPPRESS_TOTAL_SAMPLES,D[3..0],0x0,R/W,FALSE,FALSE,MAIN,"Number of total samples (up to 16) to include for each hit, including the timestamp, which is the first entry for each hit."
+0x0A300000,PAYLOAD REGISTER,D[15..0],0x0,R/W,FALSE,FALSE,MAIN,Number of frames to send out consecutively via Ethernet before stopping in Zero Suppress mode. Writing non-zero starts ZS mode burst.
+0x0A400000,ZERO_SUPPRESS_MAX_HITS,D[15..0],0x0,R/W,FALSE,FALSE,MAIN,Maximum number of events to take in a single frame before stopping.
+0x0A500000,FRAME_LENGTH,D[15..0],0x0,R/W,FALSE,FALSE,MAIN,Frame length in steps of 3.4uS; Writing $FFFF gives maximum frame size of 223mS.
+0x0A600000,BIG_TIMER_STATUS byte,D[7..0],,,,,,
+0x0C800000,P0_WRITE_PORT_STATUS,D[10..0],N/A,R,TRUE,FALSE,MAIN,USB Write Port.Status bits from the a DDR2  port. See below for breakdown of status bits.
+0x0C900000,P0_READ_PORT_STATUS,D[10..0],N/A,R,TRUE,FALSE,MAIN,USB Read Port. Status bits from the a DDR2  port. See below for breakdown of status bits.
+0x0CA00000,P1_WRITE_PORT_STATUS,D[10..0],N/A,R,TRUE,FALSE,MAIN,"Was DDR Test Pattern Write Port. Currently unused, P1 is read only"
+0x0CB00000,P1_READ_PORT_STATUS,D[10..0],N/A,R,TRUE,FALSE,MAIN,MAC read Port. Status bits from the a DDR2  port. See below for breakdown of status bits.
+0x0CC00000,P2_READ_PORT_STATUS,D[10..0],N/A,R,TRUE,FALSE,MAIN,Ping1 write port. Status bits from the a DDR2  port. See below for breakdown of status bits.
+0x0CD00000,P3_READ_PORT_STATUS,D[10..0],N/A,R,TRUE,FALSE,MAIN,Ping2 write port. Status bits from the a DDR2  port. See below for breakdown of status bits.
+0x0CE00000,P4_READ_PORT_STATUS,D[10..0],N/A,R,TRUE,FALSE,MAIN,Pong1 write port. Status bits from the a DDR2  port. See below for breakdown of status bits.
+0x0CF00000,P5_READ_PORT_STATUS,D[10..0],N/A,R,TRUE,FALSE,MAIN,Pong2 write port. Status bits from the a DDR2  port. See below for breakdown of status bits.
+0x0EC00000,SIB TEMPERATURE,D[7..0],N/A,R ,TRUE,FALSE,MAIN,Read PCB temperature; MSB is sign bit; lower 12 bits are digital temperature reading (.0625 deg C per bit)
+0x0F500000,PARAMETER INIT,N/A,N/A,W,FALSE,TRUE,EXPERT,"Starts the process that loads parameter information from the flash. This normally happens on power up, but using this command can check operation or new parameters"
+0x0F600000,FLASH ERASE,N/A,N/A,W,FALSE,TRUE,EXPERT,"Erases the whole flash, except for sectors 12-15, which are reserved for parameters"
+0x0F700000,MAC_RESET,N/A,N/A,W,FALSE,TRUE,EXPERT,Reset for external MAC and PHY
+0x0F800000,SOFTWARE_TRIGGER,N/A,N/A,W,FALSE,TRUE,EXPERT,Issue a trigger via software in any mode. Same as ext trigger. May or may not have to be in ext trigger mode depending on desired function.
+0x0F900000,FLASH_PARAM_VER,D[15..0],N/A,R ,TRUE,FALSE,MAIN,"FLASH parameter version, written to this register on power up"
+0x0FB00000,TEST ERR LATCH HIGH,D[15..0],N/A,R ,TRUE,FALSE,MAIN,Latched error for ch31..16 when in test pattern mode; ADC must be set via SPI interface to checkerboard test pattern
+0x0FC00000,PCB TEMPERATURE,D[12..0],N/A,R ,TRUE,FALSE,MAIN,Read PCB temperature; MSB is sign bit; lower 12 bits are digital temperature reading (.0625 deg C per bit)
+0x0FD00000,FIRMWARE_VER,D[15..0],N/A,R ,TRUE,FALSE,MAIN,Firmware version number
+0x0FE00000,HARD_RESET,N/A,N/A,W,FALSE,TRUE,EXPERT,CAUTION! This command causes the FPGA to reload its program from the Flash. Useful after downloading a new program to the flash
+0x0FF00000,SOFT_RESET,N/A,N/A,W,FALSE,TRUE,EXPERT,Software reset for various registers and latches
+0xF0000000,ENUMERATE SLAVE BADS,N/A,N/A,W,FALSE,TRUE,MAIN,Send command to slave BADs via HDMI to enumerate their BAD address; this needs to be done to initialize the chain.
+,,,,,,,,
+0x04000000 - 0x040701FF,SIPM DIGITIZED DATA MEMORY CH0-7,D[15..0],0xUUUU,R,TRUE,FALSE,ARRAY,512 x 12 internal memory for digitized data
+0x04100000 - 0x041701FF,SIPM DIGITIZED DATA MEMORY CH8-15,D[15..0],0xUUUU,R,TRUE,FALSE,ARRAY,512 x 12 internal memory for digitized data
+0x04200000 - 0x042701FF,SIPM DIGITIZED DATA MEMORY CH16-23,D[15..0],0xUUUU,R,TRUE,FALSE,ARRAY,512 x 12 internal memory for digitized data
+0x04300000 - 0x043701FF,SIPM DIGITIZED DATA MEMORY CH24-31,D[15..0],0xUUUU,R,TRUE,FALSE,ARRAY,512 x 12 internal memory for digitized data
+0x08800000 - 0xn08801ff,FLASH PAGE RAM,D[7..0],0x00,R/W,FALSE,FALSE,ARRAY,This is the internal FPGA 512 byte block of RAM used to communicate with the external flash. 
+,,,,,,,,
+0x00100000 CNTRL REGISTER,Function ,,,,,,,
+0,SPARE2 select ,R/W,"SPARE2 test point mux; select ""0"" = trig pulse, ""1"" = HIT OR",,,,,
+1,"0 = differential thresh scan, 1 = integral thresh scan",R/W,0 = count as above threshold only when above trig_threshold setting but below trig thesh setting + 5; 1 = count when simply above trig threshold,,,,,
+2,reserved,R/W,,,,,,
+3,1 = software ADC memory write enable,R/W,software enable for SIPM digitized data to be continuously written to internal memory,,,,,
+4,1 = enable ADC test pattern checking,R/W,"software enable for checking the ADC counting pattern ($62,$04 written to ADC control reg first). ",,,,,
+5,1 = turn on zero suppress summing,R/W,"sums the number of samples defined in total samples, then writes timestamp and summed value to memory.",,,,,
+6,1 = zero suppress enable,R/W,starts zero suppress cycle (for one or more frames). ,,,,,
+7,1 = external trigger mode,R/W,"use the external trigger to latch and hold data in memory, using the self trigger capture parameters (but not the self trigger threshold)",,,,,
+8,1 = hdmi external trigger pass,R/W,pass the trigger from the MASTER to the slave pads via HDMI,,,,,
+9,1 = Ethernet transfer enable,R/W,enables mac ethernet output,,,,,
+Im using the MS nibble for module enables,,,,,,,,
+11,data_memory module enabled,R/W,,,,,,
+12,histogram module enabled,,,,,,,
+13,,,,,,,,
+14,,,,,,,,
+15,,,,,,,,
+,,,,,,,,
+0x01000000 STATUS REGISTER,Function ,,,,,,,
+0,1 = automatic threshold scan active,R,monitor this bit to know when the automatic threshold scan is finished,,,,,
+1,1 = external trigger latched,R,an external trigger has been latched. Clearing external trigger mode resets this bit.,,,,,
+2,0 = MAC INTERRUPT,R,The MAC has sent the host (this FPGA) an interrupt,,,,,
+3,1= threshhold scan done flag raised (done thresh_scan_status),R,,,,,,
+4,1 = zero suppress cycle in progress,R,"starts on zero suppress enable, goes to zero when frame is done or max hits reached",,,,,
+5,1 = hit overflow,R,This latched bit indicates the local memory was full at some time during the ZS cycle. This condition indicates the hit rate is too high. Cleared on zero_suppress_en = 0,,,,,
+6,1 = lock onto hdmi clock or hdmi_master_clock,R,"This bit indicated that the phase detector and locking circuit on board is active, either trying to lock onto the hdmi clock or the hdmi master clock",,,,,
+7,1 = hdmi master clock select,R,"The board has detected that the master jumper is installed, and a master HDMI cable is connected, meaning this master should be locking onto an incoming master clock",,,,,
+8,1 = slave cable detect,R,The board has detected that a master or another slave is connected to its hdmi input,,,,,
+9,1 = master cable detect,R,The board has detected that another master is connected to its hdmi master input,,,,,
+10,1 = master slave lock error,R,"In slave mode, the board has detected a loss of lock. Reset using soft reset.",,,,,
+11,1 = slave return lock error,R,"In master mode when detecting slaves connected, the board has detected a loss of lock from the last slave. Reset using soft reset.",,,,,
+12,1 = master master lock error,R,"In master mode when locking onto another master, the board has detected a loss of lock. Reset using soft reset.",,,,,
+15..13,reserved,R,,,,,,
+,,,,,,,,
+0x00200000 HDMI STATUS,Function ,,,,,,,
+3..0,"PADE enumeration (highest address, # of PADEs)",R,"latched value of PADE address, returned after enumeration",,,,,
+4,1 = PADE acknowledge,R,"Clears when a slave PADE is addressed, set when slave PADE returns acknowledge",,,,,
+5,1 = HDMI timeout,R,"slave PADE did not acknowledge cycle; latched error, clears on soft reset",,,,,
+,,,,,,,,
+0x08000000 FLASH CNTRL,Function ,,,,,,,
+0,Flash Start,R/W,1= start flash command sequence. 0 = reset flash command status,,,,,
+1,Flash command done,R ,1 = flash command done.  The flash interface state machine has completed its function.,,,,,
+2,Flash command bad,R,1 = Flash command bad. Op code is bad or not implemented. No flash command sequence was performed if this bit is 1.,,,,,
+3,reserved,R,1 = Flash command bad. Op code is bad or not implemented. No flash command sequence was performed if this bit is 1.,,,,,
+4,Flash Reprogram Start,R/W,Start flash reprogram sequence; setting this bit starts a process that loads a new program into flash from DDR; assumes valid FPGA programming file already loaded to Flash,,,,,
+5,Flash Readback Start,R/W,Start flash readback sequence; setting this bit starts a process that transfers flash program into ddr memory,,,,,
+6,Flash Reprogram Done,R,1 = Flash reprogramming done; Goes to zero on Flash Reprogram Start.,,,,,
+,,,,,,,,
+Currently Implemented Flash Op codes,,,,,,,,
+$0B,"Page read. Reads one page of flash data, writes to internal DPRAM ",,,,,,,
+$82 ,"Page write. After filling internal DPRAM with data, use this OP code to write data to specified page.",,,,,,,
+$D7,"Flash Status register. Monitor bit 7 to determine flash status (1 = RDY, 0 = BUSY), bit 0 = 1 means the flash has been permanently set to a page size of 512 (this is by design)",,,,,,,
+$9F,"Read mfgr id and device id (first byte = $1F, 2nd byte = $26)",,,,,,,
+$7C,"Sector Erase. Firmware automatically erases sectors 0-11, allowing reprogramming without compromising parameter sectors. Monitor Flash command done to see when flash erase is finished (may take up to 10 seconds)",,,,,,,
+,,,,,,,,
+0x0Cn00000 DDR2 PORT STATUS,Function,,,,,,,
+6..0,FIFO count,R,# of 32 bit words in the read or write FIFO,,,,,
+7,FIFO full,,,,,,,
+8,FIFO empty,,,,,,,
+9,underrun,,,,,,,
+10,error,,,,,,,
+11,cmd FIFO empty,,,,,,,
+12,cmd FIFO full,,,,,,,
+13,test done (test port only),,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
