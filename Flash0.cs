@@ -594,9 +594,9 @@ namespace PADE
             FlashData myFlashData = new FlashData();
             FlashData readbackFlashData = new FlashData();
             myFlashData.ReadDataFromFile(fname);
-            myFlashData.WriteDatatoPADE();
-            readbackFlashData.ReadDatafromPADE();
-            myFlashData.CompareFlashData(readbackFlashData);
+            myFlashData.WriteDatatoPADE(myFlashData.MinPageNum, myFlashData.MaxPageNum);
+            //readbackFlashData.ReadDatafromPADE();
+            //myFlashData.CompareFlashData(readbackFlashData);
         }
 
         //public void FlashFileOld(string fname)
@@ -1006,7 +1006,7 @@ namespace PADE
                     int k = (j * 8) + i;
                     //TB4_Exception.logConsoleOnly("fill: "+k+" : "+_Page[k].ToString());
                     if (radioHEXorDEC.Checked)
-                    { _Page[k]=Convert.ToByte( byte_box[i, j].Text,16);}
+                    { _Page[k] = Convert.ToByte(byte_box[i, j].Text, 16); }
                     else
                     { _Page[k] = Convert.ToByte(byte_box[i, j].Text); }
                 }
@@ -1222,7 +1222,7 @@ namespace PADE
             FlashPage myFlashPage = new FlashPage();
             myFlashPage.page_num = my_Page_num;
             myFlashPage.ReadFlash_PageMB();
-            
+
             my_Page_num = 0xc03;
             myFlashPage.page_num = my_Page_num;
             myFlashPage.FastWrite();
@@ -1292,7 +1292,7 @@ namespace PADE
             else { myPADEList = null; return false; }
         }
 
-        
+
     }
 
 

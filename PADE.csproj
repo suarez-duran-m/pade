@@ -107,20 +107,16 @@
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="PcapDotNet.Base, Version=0.10.0.20668, Culture=neutral, PublicKeyToken=4b6f3e583145a652, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="PcapDotNet.Base">
       <HintPath>PcapDotNet.Binaries.0.10.0.67076.x86\PcapDotNet.Base.dll</HintPath>
     </Reference>
-    <Reference Include="PcapDotNet.Core, Version=0.10.0.20632, Culture=neutral, PublicKeyToken=4b6f3e583145a652, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="PcapDotNet.Core">
       <HintPath>PcapDotNet.Binaries.0.10.0.67076.x86\PcapDotNet.Core.dll</HintPath>
     </Reference>
-    <Reference Include="PcapDotNet.Core.Extensions, Version=0.10.0.20638, Culture=neutral, PublicKeyToken=4b6f3e583145a652, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="PcapDotNet.Core.Extensions">
       <HintPath>PcapDotNet.Binaries.0.10.0.67076.x86\PcapDotNet.Core.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="PcapDotNet.Packets, Version=0.10.0.20603, Culture=neutral, PublicKeyToken=4b6f3e583145a652, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="PcapDotNet.Packets">
       <HintPath>PcapDotNet.Binaries.0.10.0.67076.x86\PcapDotNet.Packets.dll</HintPath>
     </Reference>
     <Reference Include="PerformanceCounterHelper">
@@ -146,8 +142,7 @@
     <Reference Include="WeifenLuo.WinFormsUI.Docking">
       <HintPath>DockForm Suite\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
-    <Reference Include="ZedGraph, Version=5.1.2.878, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="ZedGraph">
       <HintPath>.\ZedGraph.dll</HintPath>
     </Reference>
   </ItemGroup>

@@ -266,8 +266,16 @@ namespace PADE
                 return PAGES.Count;
             }
         }
-        public int MinPageNum { get; set; }
-        public int MaxPageNum { get; set; }
+        public int MinPageNum
+        {
+            get { return min_page; }
+            set { min_page = value; }
+        }
+        public int MaxPageNum
+        {
+            get { return max_page; }
+            set { max_page = value; }
+        }
 
         public bool flgReportProgress { get; set; }
 
@@ -358,6 +366,9 @@ namespace PADE
                     }
                     new_page.page_num = my_Page_num;
                     this.PAGES.AddLast(new_page);
+                    if (this.PAGES.Count == 1) { this.min_page = my_Page_num; this.max_page = my_Page_num; }
+                    else { this.max_page = my_Page_num; }
+
                     new_page = null;
                     Application.DoEvents();
                 }
@@ -368,6 +379,7 @@ namespace PADE
 
             // Close file
             file.Close();
+
         }
 
         public void WriteDataToFile(string file_name)
