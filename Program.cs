@@ -2995,10 +2995,6 @@ namespace PADE
             //my_reg_collection.Add(new TB4_Register("dummy", "DB0", 0x00100000, 16, false, false, "MAIN"));
             my_reg_collection.Add(new TB4_Register("CONTROL_REG", "DB0", 0x00100000, 16, false, false, "MAIN"));
             my_reg_collection.Add(new TB4_Register("STATUS_REG", "DB0", 0x01000000, 16, true, false, "MAIN"));
-            my_reg_collection.Add(new TB4_Register("SOFTWARE_RESET", "DB0", 0x0FF00000, 16, false, true, "ZS"));
-            my_reg_collection.Add(new TB4_Register("HDMI_ENABLE", "DB0", 0x01200000, 16, false, false, "EXPERT"));
-            my_reg_collection.Add(new TB4_Register("ENUMERATE_SLAVES", "DB0", 0xF0000000, 16, false, true, "EXPERT"));
-            my_reg_collection.Add(new TB4_Register("HDMI_STATUS", "DB0", 0x00200000, 16, true, false, "EXPERT"));
             my_reg_collection.Add(new TB4_Register("FLASH_PARAM_VERSION", "DB0", 0x0F900000, 16, true, false, "MAIN"));
             my_reg_collection.Add(new TB4_Register("FIRMWARE_VER", "DB0", 0x0FD00000, 16, true, false, "MAIN"));
             my_reg_collection.Add(new TB4_Register("PADE_TEMP", "DB0", 0x0FC00000, 16, true, false, "MAIN"));
@@ -3010,17 +3006,7 @@ namespace PADE
             //my_reg_collection.Add(new TB4_Register("READ_POINTER_OFFSET", "DB0", 0x06000000, 16, false, false, "MAIN"));
             my_reg_collection.Add(new TB4_Register("DATA_STORAGE_MODE", "DB0", 0x06000000, 16, false, false, "MAIN"));
             my_reg_collection.Add(new TB4_Register("AUTO_BITSLIP", "DB0", 0x00500004, 16, false, true, "MAIN"));
-            my_reg_collection.Add(new TB4_Register("FRAME_ALIGNED", "DB0", 0x00500000, 16, true, false, "EXPERT"));
             my_reg_collection.Add(new TB4_Register("AUTO_PED_SET", "DB0", 0x06400000, 16, false, false, "MAIN"));
-            my_reg_collection.Add(new TB4_Register("THRESHOLD_SCAN_VAL", "DB0", 0x07100000, 16, false, false, "THR"));
-            my_reg_collection.Add(new TB4_Register("TRIG_THRESHOLD_CH0", "DB0", 0x04400000, 16, false, false, "THR"));
-            my_reg_collection.Add(new TB4_Register("TRIG_THRESHOLD_CH1", "DB0", 0x04500000, 16, false, false, "THR"));
-            my_reg_collection.Add(new TB4_Register("TRIG_THRESHOLD_CH2", "DB0", 0x04600000, 16, false, false, "THR"));
-            my_reg_collection.Add(new TB4_Register("TRIG_THRESHOLD_CH3", "DB0", 0x04700000, 16, false, false, "THR"));
-            my_reg_collection.Add(new TB4_Register("ADC_SPI_CNTRL_CH0", "DB0", 0x02000000, 16, false, false, "EXPERT"));
-            my_reg_collection.Add(new TB4_Register("ADC_SPI_CNTRL_CH1", "DB0", 0x02000001, 16, false, false, "EXPERT"));
-            my_reg_collection.Add(new TB4_Register("ADC_SPI_CNTRL_CH2", "DB0", 0x02000002, 16, false, false, "EXPERT"));
-            my_reg_collection.Add(new TB4_Register("ADC_SPI_CNTRL_CH3", "DB0", 0x02000003, 16, false, false, "EXPERT"));
             my_reg_collection.Add(new TB4_Register("CONTROL_REG_SLAVE1", "DB0", 0x10100000, 16, false, false, "MAIN"));
             my_reg_collection.Add(new TB4_Register("CONTROL_REG_SLAVE2", "DB0", 0x20100000, 16, false, false, "MAIN"));
             my_reg_collection.Add(new TB4_Register("CONTROL_REG_SLAVE3", "DB0", 0x30100000, 16, false, false, "MAIN"));
@@ -3030,13 +3016,21 @@ namespace PADE
             my_reg_collection.Add(new TB4_Register("TRIG_DELAY_SLAVE2", "DB0", 0x24900000, 16, false, false, "MAIN"));
             my_reg_collection.Add(new TB4_Register("TRIG_DELAY_SLAVE3", "DB0", 0x34900000, 16, false, false, "MAIN"));
             my_reg_collection.Add(new TB4_Register("TRIG_DELAY_SLAVE4", "DB0", 0x44900000, 16, false, false, "MAIN"));
-            my_reg_collection.Add(new TB4_Register("PARAMETER_INIT", "DB0", 0x0F500000, 16, false, true, "FLASH"));
-            my_reg_collection.Add(new TB4_Register("ZS_TOTAL_FRAMES", "DB0", 0x0A300000, 16, false, false, "ZS"));
-            my_reg_collection.Add(new TB4_Register("STATUS_REGzs", "DB0", 0x01000000, 16, true, false, "ZS"));
-            my_reg_collection.Add(new TB4_Register("CONTROL_REGzs", "DB0", 0x00100000, 16, false, false, "ZS"));
-            my_reg_collection.Add(new TB4_Register("PING_HIT_COUNT", "DB0", 0x0A100000, 16, true, false, "ZS"));
-            my_reg_collection.Add(new TB4_Register("SOFTWARE_TRIGGER", "DB0", 0x0F800000, 16, false, true, "ZS"));
-            my_reg_collection.Add(new TB4_Register("ZERO_SUPPRESS_TOTAL_SAMPLES", "DB0", 0x0A200000, 16, false, false, "ZS"));
+            my_reg_collection.Add(new TB4_Register("BOARD_ID", "DB0", 0x0A800000, 16, false, false, "MAIN"));
+            my_reg_collection.Add(new TB4_Register("SIB_ID_W0", "DB0", 0x0A900000, 16, true, false, "MAIN"));
+            my_reg_collection.Add(new TB4_Register("SIB_ID_W1", "DB0", 0x0A900001, 16, true, false, "MAIN"));
+            my_reg_collection.Add(new TB4_Register("SIB_ID_W2", "DB0", 0x0A900002, 16, true, false, "MAIN"));
+            my_reg_collection.Add(new TB4_Register("SIB_ID_W3", "DB0", 0x0A900003, 16, true, false, "MAIN"));
+            my_reg_collection.Add(new TB4_Register("ROTATION_ANGLE", "DB0", 0x0AA00000, 16, false, false, "MAIN"));
+
+            my_reg_collection.Add(new TB4_Register("HDMI_ENABLE", "DB0", 0x01200000, 16, false, false, "EXPERT"));
+            my_reg_collection.Add(new TB4_Register("ENUMERATE_SLAVES", "DB0", 0xF0000000, 16, false, true, "EXPERT"));
+            my_reg_collection.Add(new TB4_Register("HDMI_STATUS", "DB0", 0x00200000, 16, true, false, "EXPERT"));
+            my_reg_collection.Add(new TB4_Register("FRAME_ALIGNED", "DB0", 0x00500000, 16, true, false, "EXPERT"));
+            my_reg_collection.Add(new TB4_Register("ADC_SPI_CNTRL_CH0", "DB0", 0x02000000, 16, false, false, "EXPERT"));
+            my_reg_collection.Add(new TB4_Register("ADC_SPI_CNTRL_CH1", "DB0", 0x02000001, 16, false, false, "EXPERT"));
+            my_reg_collection.Add(new TB4_Register("ADC_SPI_CNTRL_CH2", "DB0", 0x02000002, 16, false, false, "EXPERT"));
+            my_reg_collection.Add(new TB4_Register("ADC_SPI_CNTRL_CH3", "DB0", 0x02000003, 16, false, false, "EXPERT"));
             my_reg_collection.Add(new TB4_Register("P0_WRITE_PORT_STATUS", "DB0", 0x0C800000, 16, true, false, "EXPERT"));
             my_reg_collection.Add(new TB4_Register("P0_READ_PORT_STATUS", "DB0", 0x0C900000, 16, true, false, "EXPERT"));
             my_reg_collection.Add(new TB4_Register("P1_WRITE_PORT_STATUS", "DB0", 0x0CA00000, 16, true, false, "EXPERT"));
@@ -3060,6 +3054,7 @@ namespace PADE
             my_reg_collection.Add(new TB4_Register("XSHTDN", "DB0", 0x02400000, 16, false, true, "EXPERT"));
             my_reg_collection.Add(new TB4_Register("ERR_LATCH_UPPER", "DB0", 0x0FB00000, 16, true, false, "EXPERT"));
             my_reg_collection.Add(new TB4_Register("ERR_LATCH_LOWER", "DB0", 0x0FA00000, 16, true, false, "EXPERT"));
+
             my_reg_collection.Add(new TB4_Register("BIAS_DAC", "DB0", 0x00A00000, 16, false, false, "BIAS"));
             my_reg_collection.Add(new TB4_Register("BIAS_VMON", "DB0", 0x00B00000, 16, true, false, "BIAS"));
             my_reg_collection.Add(new TB4_Register("BIAS_IMON", "DB0", 0x00C00000, 16, true, false, "BIAS"));
@@ -3096,18 +3091,13 @@ namespace PADE
             my_reg_collection.Add(new TB4_Register("BIAS_OFFSET_CH29", "DB0", 0x0080001D, 16, false, false, "BIAS"));
             my_reg_collection.Add(new TB4_Register("BIAS_OFFSET_CH30", "DB0", 0x0080001E, 16, false, false, "BIAS"));
             my_reg_collection.Add(new TB4_Register("BIAS_OFFSET_CH31", "DB0", 0x0080001F, 16, false, false, "BIAS"));
-            my_reg_collection.Add(new TB4_Register("ZERO_SUPPRESS_EVENTS", "DB0", 0x0A000000, 16, true, false, "ZS"));
-            my_reg_collection.Add(new TB4_Register("KILL_MASK_LOWER", "DB0", 0x0A400000, 16, false, false, "ZS"));
-            my_reg_collection.Add(new TB4_Register("KILL_MASK_UPPER", "DB0", 0x0A400001, 16, false, false, "ZS"));
-            my_reg_collection.Add(new TB4_Register("FRAME_LENGTH", "DB0", 0x0A500000, 16, false, false, "ZS"));
-            my_reg_collection.Add(new TB4_Register("TIMER_STATUS", "DB0", 0x0A600000, 16, true, false, "ZS"));
-            my_reg_collection.Add(new TB4_Register("DEBUG_CHAN_ADDR", "DB0", 0x0A700000, 16, false, false, "ZS"));
-            my_reg_collection.Add(new TB4_Register("BOARD_ID", "DB0", 0x0A800000, 16, false, false, "MAIN"));
-            my_reg_collection.Add(new TB4_Register("SIB_ID_W0", "DB0", 0x0A900000, 16, true, false, "MAIN"));
-            my_reg_collection.Add(new TB4_Register("SIB_ID_W1", "DB0", 0x0A900001, 16, true, false, "MAIN"));
-            my_reg_collection.Add(new TB4_Register("SIB_ID_W2", "DB0", 0x0A900002, 16, true, false, "MAIN"));
-            my_reg_collection.Add(new TB4_Register("SIB_ID_W3", "DB0", 0x0A900003, 16, true, false, "MAIN"));
-            my_reg_collection.Add(new TB4_Register("ROTATION_ANGLE", "DB0", 0x0AA00000, 16, false, false, "MAIN"));
+
+            my_reg_collection.Add(new TB4_Register("THRESHOLD_SCAN_VAL", "DB0", 0x07100000, 16, false, false, "THR"));
+            my_reg_collection.Add(new TB4_Register("TRIG_THRESHOLD_CH0", "DB0", 0x04400000, 16, false, false, "THR"));
+            my_reg_collection.Add(new TB4_Register("TRIG_THRESHOLD_CH1", "DB0", 0x04500000, 16, false, false, "THR"));
+            my_reg_collection.Add(new TB4_Register("TRIG_THRESHOLD_CH2", "DB0", 0x04600000, 16, false, false, "THR"));
+            my_reg_collection.Add(new TB4_Register("TRIG_THRESHOLD_CH3", "DB0", 0x04700000, 16, false, false, "THR"));
+
             my_reg_collection.Add(new TB4_Register("CSR", "DB0", 0x00100000, 16, false, false, "THR"));
             my_reg_collection.Add(new TB4_Register("THR_SCAN_TIME", "DB0", 0x07000000, 16, false, false, "THR"));
             my_reg_collection.Add(new TB4_Register("SOFT_TRIG", "DB0", 0x0F800000, 16, false, false, "THR"));
@@ -3176,6 +3166,28 @@ namespace PADE
             my_reg_collection.Add(new TB4_Register("MAC_TEST_DATA_LENGTH", "DB0", 0x03600000, 16, false, false, "ETH"));
             my_reg_collection.Add(new TB4_Register("MAC_RESET", "DB0", 0x0F700000, 16, false, false, "ETH"));
 
+            my_reg_collection.Add(new TB4_Register("SOFTWARE_RESET", "DB0", 0x0FF00000, 16, false, true, "ZS"));
+            my_reg_collection.Add(new TB4_Register("ZS_TOTAL_FRAMES", "DB0", 0x0A300000, 16, false, false, "ZS"));
+            my_reg_collection.Add(new TB4_Register("STATUS_REGzs", "DB0", 0x01000000, 16, true, false, "ZS"));
+            my_reg_collection.Add(new TB4_Register("CONTROL_REGzs", "DB0", 0x00100000, 16, false, false, "ZS"));
+            my_reg_collection.Add(new TB4_Register("PING_HIT_COUNT", "DB0", 0x0A100000, 16, true, false, "ZS"));
+            my_reg_collection.Add(new TB4_Register("SOFTWARE_TRIGGER", "DB0", 0x0F800000, 16, false, true, "ZS"));
+            my_reg_collection.Add(new TB4_Register("ZERO_SUPPRESS_TOTAL_SAMPLES", "DB0", 0x0A200000, 16, false, false, "ZS"));
+            my_reg_collection.Add(new TB4_Register("ZERO_SUPPRESS_EVENTS", "DB0", 0x0A000000, 16, true, false, "ZS"));
+            my_reg_collection.Add(new TB4_Register("KILL_MASK_LOWER", "DB0", 0x0A400000, 16, false, false, "ZS"));
+            my_reg_collection.Add(new TB4_Register("KILL_MASK_UPPER", "DB0", 0x0A400001, 16, false, false, "ZS"));
+            my_reg_collection.Add(new TB4_Register("FRAME_LENGTH", "DB0", 0x0A500000, 16, false, false, "ZS"));
+            my_reg_collection.Add(new TB4_Register("TIMER_STATUS", "DB0", 0x0A600000, 16, true, false, "ZS"));
+            my_reg_collection.Add(new TB4_Register("DEBUG_CHAN_ADDR", "DB0", 0x0A700000, 16, false, false, "ZS"));
+
+            my_reg_collection.Add(new TB4_Register("START_BURST", "DB0", 0x05000000, 16, false, false, "ZS"));
+            my_reg_collection.Add(new TB4_Register("NUMBER_OF_TRIG", "DB0", 0x05000001, 16, false, false, "ZS"));
+            my_reg_collection.Add(new TB4_Register("TRIG_HOLD_OFF", "DB0", 0x05000002, 16, false, false, "ZS"));
+            my_reg_collection.Add(new TB4_Register("FRAME_TO_FRAME_DEL", "DB0", 0x05000003, 16, false, false, "ZS"));
+
+            my_reg_collection.Add(new TB4_Register("FAKE_TRIG_ENABLE", "DB0", 0x05700000, 16, false, false, "ZS"));
+            my_reg_collection.Add(new TB4_Register("FAKE_TRIG_PERIOD", "DB0", 0x05700001, 16, false, false, "ZS"));
+
             my_reg_collection.Add(new TB4_Register("TRIG_POST_STORE", "DB0", 0x05100000, 16, false, false, "ZS"));
             my_reg_collection.Add(new TB4_Register("TRIG_ARM", "DB0", 0x05200000, 16, false, false, "ZS"));
             my_reg_collection.Add(new TB4_Register("MEM_CLEAR", "DB0", 0x05300000, 16, false, true, "ZS"));
@@ -3205,6 +3217,7 @@ namespace PADE
 
             #endregion DB_register Definitions
             #region FLASH_DPRAM
+            my_reg_collection.Add(new TB4_Register("PARAMETER_INIT", "DB0", 0x0F500000, 16, false, true, "FLASH"));
             my_reg_collection.Add(new TB4_Register("HARD_RESET", "DB0", 0x0FE00000, 16, false, true, "FLASH"));
             my_reg_collection.Add(new TB4_Register("FLASH_BINARY", "DB0", 0x00300000, 16, false, true, "FLASH"));
             my_reg_collection.Add(new TB4_Register("FLASH_CONTROL", "DB0", 0x08000000, 16, false, false, "FLASH"));
