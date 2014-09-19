@@ -859,7 +859,19 @@ namespace PADE
             }
             for (int i = 0; i < textOverlayList.Count; i++)
             {
-                this.graphicObj.DrawString(textOverlayList[i].text, new Font("Courier New", (float)10.0, FontStyle.Regular), new SolidBrush(textOverlayList[i].textColor), new PointF(this.Width - this.graphicObj.MeasureString(textOverlayList[i].text, new Font("Courier New", (float)10.0, FontStyle.Regular)).Width - 10, 5 + i * this.graphicObj.MeasureString(textOverlayList[i].text, new Font("Courier New", (float)10.0, FontStyle.Regular)).Height));
+                this.graphicObj.DrawString
+                    (
+                        textOverlayList[i].text, 
+                        new Font("Courier New", (float)10.0, FontStyle.Regular), 
+                        new SolidBrush(textOverlayList[i].textColor), 
+                        new PointF
+                            (
+                            this.Width - this.graphicObj.MeasureString(textOverlayList[i].text,
+                            new Font("Courier New", (float)10.0, FontStyle.Regular)).Width - 10,
+                            5 + i * this.graphicObj.MeasureString(textOverlayList[i].text, 
+                            new Font("Courier New", (float)10.0, FontStyle.Regular)).Height
+                            )
+                       );
             }
             base.OnPaint(e);
             
